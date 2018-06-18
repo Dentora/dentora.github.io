@@ -1,0 +1,11 @@
+{
+    "announcements":[
+        {
+            "date": "06.18.2018",
+            "title": "Dentora Server Update",
+            "subtitle": "June 18, 2018",
+            "content": "Server Voting Pool was updated June 18.<br />Updated and Removed Games<br />Nacht Der Untoten, Removed Mongoose Mayhem<br />♥ Dentora",
+            "background": "dew://assets/announcements/welcome_01.jpg"           
+        }
+    ]
+}
