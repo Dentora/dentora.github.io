@@ -2,7 +2,7 @@ const masterServers = [
     "http://158.69.166.144:8080/list",
     "http://eldewrito.red-m.net/list"
 ];
-const playlists = ['all', 'social','ranked','customs','private','forge'];
+const playlists = ['all','beerkeg','officialSocial','officialRanked','customs'];
 
 let pingQueue = [];
 let pingCounter= 0;
@@ -12,7 +12,7 @@ let model = {
     currentSortDir: 'desc',
     currentServerList: [],
     currentFilter: '',
-    currentPlaylist: 'beerkegRanked',
+    currentPlaylist: 'beerkeg',
     playerCount: 0,
     serverCount: 0
 };
@@ -307,7 +307,7 @@ function ping(info) {
             }
 
             resolve({
-                type: data.passworded ? 'private' : (officialStatus ? (officialStatus.ranked ? 'officialRanked' : 'officialSocial') : beerkegStatus ? (beerkegStatus.ranked ? 'beerkegRanked' : 'beerkegSocial')  : ''),
+                type: data.passworded ? 'private' : (officialStatus ? (officialStatus.ranked ? 'officialRanked' : 'officialSocial') : beerkegStatus ? 'beerkeg' : ''),
                 ping: ping,
                 IP: info.server,
                 hostPlayer: data.hostPlayer,
@@ -510,27 +510,24 @@ let playlistFilters = {
     all: function(server) {
         return server.type !== 'private';
     },
+    beerkeg: function(server) {
+        return server.type === 'beerkeg';
+    },
     officialSocial: function(server) {
         return server.type === 'OfficialSocial';
-    },
-    beerkegSocial: function(server) {
-        return server.type === 'beerkegSocial';
     },
     officialRanked: function(server) {
         return server.type === 'officialRanked';
     },
-    beerkegRanked: function(server) {
-        return server.type === 'beerkegRanked';
-    },
     customs: function(server) {
-        return server.type !== 'officialRanked' && server.type !== 'officialSocial' && server.type !== 'beerkegRanked' && server.type !== 'beerkegSocial' && server.type !== 'private';
-    },
-    private: function(server) {
-        return server.type === 'private';
-    },
-    forge: function(server) {
-        return server.type !== 'officialRanked' && server.type !== 'officialSocial' && server.type !== 'beerkegRanked' && server.type !== 'beerkegSocial' && server.type !== 'private' && server.variantType === 'forge';
-    }
+        return server.type !== 'officialRanked' && server.type !== 'officialSocial' && server.type !== 'beerkeg' && server.type !== 'private';
+    }//,
+    //private: function(server) {
+    //    return server.type === 'private';
+    //},
+    //forge: function(server) {
+    //    return server.type !== 'officialRanked' && server.type !== 'officialSocial' && server.type !== 'beerkeg' && server.type !== 'private' && server.variantType === 'forge';
+    //}
 }
 
 function render() {
