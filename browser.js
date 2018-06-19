@@ -17,6 +17,7 @@ let model = {
     serverCount: 0
 };
 let officialServers = {};
+let beerkegServers = {};
 let refreshVersion = 0;
 let inflightRequests = [];
 let refreshing = false;
@@ -211,6 +212,15 @@ function refresh() {
         render();
     });
 
+    fetch('servers.json', {})
+    .then((resp) => resp.json())
+    .then(resp => {
+        for(let server of resp) {
+            beerkegServers[server.address] = server
+        }
+        render();
+    });
+
     let visited = {};
     for (let i = 0; i< masterServers.length; i++){
         fetch(masterServers[i], {})
@@ -289,6 +299,7 @@ function ping(info) {
             let endTime = Date.now();
             let ping = Math.round((endTime - startTime) * .45);
             let officialStatus = officialServers[info.server];
+            let beerkegStatus = beerkegServers[info.server];
 
             if((data.numPlayers < 0 || data.numPlayers > 16) ||
                 (data.players && data.players.length !== data.numPlayers)) {
@@ -296,7 +307,7 @@ function ping(info) {
             }
 
             resolve({
-                type: data.passworded ? 'private' : (officialStatus ? (officialStatus.ranked ? 'ranked' : 'social') : ''),
+                type: data.passworded ? 'private' : (officialStatus ? (officialStatus.ranked ? 'officialRanked' : 'officialSocial')  : '') : (beerkegStatus ? (beerkegStatus.ranked ? 'beerkegRanked' : 'beerkegSocial')  : ''),
                 ping: ping,
                 IP: info.server,
                 hostPlayer: data.hostPlayer,
@@ -499,20 +510,26 @@ let playlistFilters = {
     all: function(server) {
         return server.type !== 'private';
     },
-    social: function(server) {
-        return server.type === 'social';
+    officialSocial: function(server) {
+        return server.type === 'OfficialSocial';
     },
-    ranked: function(server) {
-        return server.type === 'ranked';
+    beerkegSocial: function(server) {
+        return server.type === 'beerkegSocial';
+    },
+    officialRanked: function(server) {
+        return server.type === 'officialRanked';
+    },
+    beerkegRanked: function(server) {
+        return server.type === 'beerkegRanked';
     },
     customs: function(server) {
-        return server.type !== 'ranked' && server.type !== 'social' && server.type !== 'private';
+        return server.type !== 'officialRanked' && server.type !== 'officialSocial' && server.type !== 'beerkegRanked' && server.type !== 'beerkegSocial' && server.type !== 'private';
     },
     private: function(server) {
         return server.type === 'private';
     },
     forge: function(server) {
-        return server.type !== 'ranked' && server.type !== 'social' && server.type !== 'private' && server.variantType === 'forge';
+        return server.type !== 'officialRanked' && server.type !== 'officialSocial' && server.type !== 'beerkegRanked' && server.type !== 'beerkegSocial' && server.type !== 'private' && server.variantType === 'forge';
     }
 }
 
