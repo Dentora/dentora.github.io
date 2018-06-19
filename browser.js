@@ -307,7 +307,7 @@ function ping(info) {
             }
 
             resolve({
-                type: data.passworded ? 'private' : (officialStatus ? (officialStatus.ranked ? 'officialRanked' : 'officialSocial')  : '') : (beerkegStatus ? (beerkegStatus.ranked ? 'beerkegRanked' : 'beerkegSocial')  : ''),
+                type: data.passworded ? 'private' : (officialStatus ? (officialStatus.ranked ? 'officialRanked' : 'officialSocial') : beerkegStatus ? (beerkegStatus.ranked ? 'beerkegRanked' : 'beerkegSocial')  : ''),
                 ping: ping,
                 IP: info.server,
                 hostPlayer: data.hostPlayer,
