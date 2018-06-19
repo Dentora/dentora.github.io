@@ -12,7 +12,7 @@ let model = {
     currentSortDir: 'desc',
     currentServerList: [],
     currentFilter: '',
-    currentPlaylist: 'social',
+    currentPlaylist: 'beerkegRanked',
     playerCount: 0,
     serverCount: 0
 };
