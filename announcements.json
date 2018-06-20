@@ -1,11 +1,11 @@
 {
     "announcements":[
         {
-            "date": "06.18.2018",
+            "date": "06.19.2018",
 			"dateCheck": "04.23.2018",
-            "title": "2 New Games",
-            "subtitle": "June 18 | 7:45pm",
-            "content": "<h4>Added New Games</h4><br />-Escape!(updated at 7:45pm)<br />-Predator City Hunt<br /><br />♥ Dentora",
+            "title": "2 Games Updated",
+            "subtitle": "June 19",
+            "content": "<h4>Updated Games</h4><br />-Splatter Monkeys <br />-ChasinTheAsians<br /><br />♥ Dentora",
             "background": "https://raw.githubusercontent.com/Dentora/dentora.github.io/master/imgs/welcome_02.jpg"           
         }
     ]
