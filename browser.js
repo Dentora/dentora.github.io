@@ -34,7 +34,6 @@ let serverListWidget = dew.makeListWidget(document.querySelector('#server-list-w
 });
 serverListWidget.focus();
 
-dew.command('Game.HideChat 1');
 
 serverListWidget.on('select', function(e) {
     let server = e.element.dataset.ip;
@@ -99,6 +98,7 @@ dew.on('show', function() {
 
 dew.on('hide', function() {
     visible = false;
+    dew.command('Game.HideChat 0');
     cancelRefresh();
     dew.command('Game.HideH3UI 0');
     swal.close();
