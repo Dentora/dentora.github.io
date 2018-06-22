@@ -1,11 +1,10 @@
 {
 	"announcements":[
 		{
-			"date": "06.19.2018",
-			"dateCheck": "04.23.2018",
-			"title": "2 Games Updated",
-			"subtitle": "June 19",
-			"content": "<h4>Updated Games</h4><br />-Splatter Monkeys <br />-ChasinTheAsians<br /><br />♥ Dentora",
+			"date": "06.21.2018",
+			"title": "The ANVIL Update",
+			"subtitle": "June 21, 2018",
+			"content": "<h4>Added and Updated</h4><br />-Splatter Snek <br />-Fixed Various game mode names on Core-18 servers<br /> We need your support! http://tinyurl.com/dendonate<br />♥ Dentora",
 			"background": "https://raw.githubusercontent.com/Dentora/dentora.github.io/master/imgs/welcome_02.jpg"           
 		}
 	]
